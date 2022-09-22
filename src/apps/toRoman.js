@@ -5,13 +5,15 @@ function ToRoman() {
     const input2 = React.createRef()
 
     async function sendRequest(params = {}) {
-        const query = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
-        const result = await fetch(`http://api/?${query}`);
+        let query = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+        let result = await fetch(`http://api/?${query}`);
         return await result.text();
-     }
+    }
 
     async function sendToBack() {
-        console.log(await sendRequest({ input1, input2 }));
+        let number = input1.current.value;
+        let system = input2.current.value;
+        console.log(await sendRequest({ number, system }));
     }
 
     return (

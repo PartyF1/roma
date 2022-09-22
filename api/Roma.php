@@ -118,8 +118,10 @@ class Roma
       }
    }
 
-   function toRome($number)
+   function toRome($number, $system = 10)
    {
+      if ($system === "") $system = 10;
+      $number = $system === 10 ? $number : base_convert($number, $system, 10);
       $count = 1;
       $romeNum = "";
       while ($number >= 1) {

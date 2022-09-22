@@ -5,10 +5,12 @@ import Button from './apps/button';
 import Header from "./apps/header"
 import ToNum from './apps/toNum';
 import ToRoman from './apps/toRoman';
-import Send from './apps/send';
+import Answer from './apps/answer';
 
 function App() {
+  const arrOfNums = [];
   const [activeButton, setActiveButton] = useState("arabic");
+  const [arrState] = useState(arrOfNums.length);
   return (
     <div className="App">
       <Header
@@ -21,7 +23,10 @@ function App() {
       activeButton === "romanic" ?
       <ToNum></ToNum> : {}
       }
-      <Send></Send>
+      <Answer 
+        arrOfNums = {arrOfNums}
+        arrState = {arrState}
+      ></Answer>
     </div>
   );
 }
