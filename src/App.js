@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useState } from "react";
+import Button from './apps/button';
+import Header from "./apps/header"
+import ToNum from './apps/toNum';
+import ToRoman from './apps/toRoman';
+import Send from './apps/send';
 
 function App() {
+  const [activeButton, setActiveButton] = useState("arabic");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header
+        key={activeButton}
+        activeButton={activeButton}
+        setActiveButton={(name) => setActiveButton(name)}
+      > </Header>
+      {activeButton === "arabic" ? 
+      <ToRoman></ToRoman> :
+      activeButton === "romanic" ?
+      <ToNum></ToNum> : {}
+      }
+      <Send></Send>
     </div>
   );
 }
