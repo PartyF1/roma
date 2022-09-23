@@ -1,6 +1,9 @@
 import React from "react";
+import {useState} from "react";
 
-function ToNum() {
+function ToNum(props) {
+    const {arrOfNums} = props;
+    const [state, setState] = useState(false);
     const input1 = React.createRef()
 
     async function sendRequest(params = {}) {
@@ -11,7 +14,9 @@ function ToNum() {
 
     async function sendToBack() {
         let romanic = input1.current.value;
-        console.log(await sendRequest({romanic}));
+        const newNum = await sendRequest({romanic})
+        if (newNum != "") arrOfNums.push(newNum);
+        setState(!state);
     }
 
     return (

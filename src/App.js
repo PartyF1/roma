@@ -10,7 +10,7 @@ import Answer from './apps/answer';
 function App() {
   const arrOfNums = [];
   const [activeButton, setActiveButton] = useState("arabic");
-  const [arrState] = useState(arrOfNums.length);
+  const [arrState, setArrState] = useState(arrOfNums);
   return (
     <div className="App">
       <Header
@@ -19,13 +19,24 @@ function App() {
         setActiveButton={(name) => setActiveButton(name)}
       > </Header>
       {activeButton === "arabic" ? 
-      <ToRoman></ToRoman> :
+      <ToRoman
+            key = {arrOfNums.length} 
+            arrOfNums = {arrOfNums}
+            setArrState = {setArrState}
+            arrState = {arrState}
+      ></ToRoman> :
       activeButton === "romanic" ?
-      <ToNum></ToNum> : {}
+      <ToNum 
+            key = {arrOfNums.length} 
+            arrOfNums = {arrOfNums}
+            setArrState = {setArrState}
+            arrState = {arrState}
+      ></ToNum> : {}
       }
       <Answer 
         arrOfNums = {arrOfNums}
         arrState = {arrState}
+        setArrState = {setArrState}
       ></Answer>
     </div>
   );

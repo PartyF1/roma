@@ -1,3 +1,5 @@
+import "./button.css"
+
 function Button(props) {
     const { onClick, name, title, isActive } = props;
 

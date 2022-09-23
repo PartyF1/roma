@@ -1,6 +1,9 @@
 import React from "react";
+import {useState} from "react";
 
-function ToRoman() {
+function ToRoman(props) {
+    const {arrOfNums} = props;
+    const [state, setState] = useState(false);
     const input1 = React.createRef()
     const input2 = React.createRef()
 
@@ -13,7 +16,9 @@ function ToRoman() {
     async function sendToBack() {
         let number = input1.current.value;
         let system = input2.current.value;
-        console.log(await sendRequest({ number, system }));
+        const newRoman = await sendRequest({ number, system });
+        if (newRoman != "") arrOfNums.push(newRoman);
+        setState(!state);
     }
 
     return (
